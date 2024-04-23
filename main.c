@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "tarefas.h"
+#include "contatos.h"
 
 int main() {
     Contato contatos[TOTAL];
@@ -16,4 +16,14 @@ int main() {
     printf("6 - Carregar contatos de binário\n");
     printf("0 - Sair\n");
     printf("Escolha uma opcao: ");
+    
+
+    scanf("%d", &opcao);
+    clearBuffer();
+    switch (opcao) {
+      case 1:
+        resultado = criar(contatos, &pos);
+        break;
+      }
     } while (opcao != 0);
+}

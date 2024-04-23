@@ -1,23 +1,29 @@
-#include "tarefas.h"
+#include "contatos.h"
 #include <stdio.h>
 #include <string.h>
 
 ERROS criar(Contato contatos[], int *pos) {
-  if (*pos >= TOTAL)
+  if (*pos >= TOTAL){
+  }
 
   printf("Digite o nome do contato: ");
-  scanf("%d", &contatos[*pos].nome);
+  fgets(contatos[*pos].nome, NOME, stdin);
   
-  clearBuffer();
-  printf("Entre com a categoria: ");/
-  fgets(tarefas[*pos].categoria, CATEGORIA, stdin);
+  printf("Entre com o sobrenome: ");
+  fgets(contatos[*pos].sobrenome, SOBRENOME, stdin);
 
-
-  printf("Entre com a descricao: ");
-  fgets(tarefas[*pos].descricao, DESCRICAO, stdin);
+  printf("Entre com o e-mail: ");
+  fgets(contatos[*pos].email, EMAIL, stdin);
+  
+  printf("Entre com o numero: ");
+  scanf("%d", &contatos[*pos].numero);
   
   *pos = *pos + 1;
-  printf("Tarefa criada com sucesso.\n");
+  printf("Contato adicionado com sucesso <3\n");
 
   return OK;
 }
+  void clearBuffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+    }
