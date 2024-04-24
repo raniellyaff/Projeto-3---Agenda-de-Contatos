@@ -19,8 +19,26 @@ ERROS criar(Contato contatos[], int *pos) {
   scanf("%d", &contatos[*pos].numero);
   
   *pos = *pos + 1;
-  printf("Contato adicionado com sucesso <3\n");
+  printf("Contato adicionado com sucesso! <3\n");
 
+  return OK;
+}
+
+ERROS listar(Contato contatos[], int *pos) {
+  if (*pos == 0) {
+    return SEM_CONTATOS;
+  }
+
+  for (int i = 0; i < *pos; i++) {
+    printf("\nNome: %s", contatos[i].nome);
+    printf("Sobrenome: %s", contatos[i].sobrenome);
+    printf("E-mail: %s", contatos[i].email);
+    printf("Número: %d\n", contatos[i].numero);
+    i++;
+  }
+
+  printf("Contatos listados com sucesso! <3\n");
+  
   return OK;
 }
   void clearBuffer() {

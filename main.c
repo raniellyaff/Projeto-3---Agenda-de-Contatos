@@ -11,7 +11,7 @@ int main() {
     printf("\nMenu principal\n");
     printf("1 - Adicionar contato\n");
     printf("2 - Listar contatos\n");
-    printf("3 - Deletar contatos\n");
+    printf("3 - Deletar contato\n");
     printf("5 - Exportar contatos para binário\n");
     printf("6 - Carregar contatos de binário\n");
     printf("0 - Sair\n");
@@ -23,6 +23,9 @@ int main() {
     switch (opcao) {
       case 1:
         resultado = criar(contatos, &pos);
+        break;
+      case 2:
+        resultado = listar(contatos, &pos);
         break;
       }
     } while (opcao != 0);
