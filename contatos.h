@@ -11,10 +11,11 @@ typedef struct Contato {
   char email[EMAIL];
 } Contato;
 
-typedef enum {OK} ERROS;
+typedef enum {OK, SEM_CONTATOS} ERROS;
 
 typedef ERROS (*funcao)(Contato[], int*);
 
 ERROS criar(Contato contatos[], int *pos);
+ERROS listar(Contato contatos[], int *pos);
 
 void clearBuffer();
