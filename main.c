@@ -2,10 +2,10 @@
 #include "contatos.h"
 
 int main() {
-    Contato contatos[TOTAL];
-    int pos = 0;
-    int opcao;
-    ERROS resultado;
+  Contato contatos[TOTAL];
+  int pos = 0;
+  int opcao;
+  ERROS resultado;
 
   do {
     printf("\nMenu principal\n");
@@ -27,6 +27,9 @@ int main() {
       case 2:
         resultado = listar(contatos, &pos);
         break;
-      }
-    } while (opcao != 0);
+      case 3:
+        resultado = deletar(contatos, &pos);
+        break;
+    }
+  } while (opcao != 0);
 }
