@@ -5,13 +5,12 @@
 ERROS criar(Contato contatos[], int *pos) {
   if (*pos >= TOTAL){
   }
-
   printf("Digite o nome do contato: ");
   fgets(contatos[*pos].nome, NOME, stdin);
   
   printf("Entre com o sobrenome: ");
   fgets(contatos[*pos].sobrenome, SOBRENOME, stdin);
-
+  
   printf("Entre com o e-mail: ");
   fgets(contatos[*pos].email, EMAIL, stdin);
   
@@ -20,7 +19,6 @@ ERROS criar(Contato contatos[], int *pos) {
   
   *pos = *pos + 1;
   printf("Contato adicionado com sucesso! <3\n");
-
   return OK;
 }
 
@@ -34,14 +32,38 @@ ERROS listar(Contato contatos[], int *pos) {
     printf("Sobrenome: %s", contatos[i].sobrenome);
     printf("E-mail: %s", contatos[i].email);
     printf("Número: %d\n", contatos[i].numero);
-    i++;
   }
 
-  printf("Contatos listados com sucesso! <3\n");
-  
+  printf("\nContatos listados com sucesso! <3\n");
   return OK;
 }
-  void clearBuffer() {
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF);
+
+ERROS deletar(Contato contatos[], int *pos) {
+  if (*pos == 0)
+    return SEM_CONTATOS;
+
+  int num_deletar;
+  printf("Digite o número do contato a ser deletado: ");
+  scanf("%d", &num_deletar);
+
+  int encontrado = 0;
+  for (int i = 0; i < *pos; i++) {
+    printf("ola");
+    if (contatos[i].numero == num_deletar || encontrado) {
+      strcpy(contatos[i].nome, contatos[i + 1].nome);
+      strcpy(contatos[i].sobrenome, contatos[i + 1].sobrenome);
+      strcpy(contatos[i].email, contatos[i + 1].email);
+      contatos[i].numero = contatos[i + 1].numero;
+      encontrado = 1;
     }
+  }
+  if (encontrado)
+    *pos = *pos - 1;
+  printf("Contato deletado com sucesso! <3\n");
+  return OK;
+}
+
+void clearBuffer() {
+  int c;
+  while ((c = getchar()) != '\n' && c != EOF);
+}
