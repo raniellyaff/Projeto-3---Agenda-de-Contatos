@@ -63,6 +63,25 @@ ERROS deletar(Contato contatos[], int *pos) {
   return OK;
 }
 
+ERROS exportar_binario(Contato contatos[], int pos) {
+  FILE *arquivo =
+    fopen("contatos.bin", "wb");
+
+  if (arquivo == NULL) {
+    return ABRIR;
+  }
+  int qtd = fwrite(contatos, sizeof(Contato), pos, arquivo);
+
+  if (qtd != pos) {
+    fclose(arquivo);
+    return ESCREVER;
+  }
+
+  fclose(arquivo);
+  printf("Contatos exportados para arquivo binário com sucesso! <3\n");
+  return OK;
+}
+
 void clearBuffer() {
   int c;
   while ((c = getchar()) != '\n' && c != EOF);

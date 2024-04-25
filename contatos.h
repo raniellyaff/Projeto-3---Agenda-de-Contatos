@@ -10,12 +10,13 @@ typedef struct Contato {
   char email[EMAIL];
 } Contato;
 
-typedef enum {OK, SEM_CONTATOS, NAO_ENCONTRADO} ERROS;
+typedef enum {OK, SEM_CONTATOS, NAO_ENCONTRADO, ESCREVER, ABRIR} ERROS;
 
 typedef ERROS (*funcao)(Contato[], int*);
 
 ERROS criar(Contato contatos[], int *pos);
 ERROS listar(Contato contatos[], int *pos);
 ERROS deletar(Contato contatos[], int *pos);
+ERROS exportar_binario(Contato contatos[], int pos);
 
 void clearBuffer();
