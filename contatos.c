@@ -3,22 +3,23 @@
 #include <string.h>
 
 ERROS criar(Contato contatos[], int *pos) {
-  if (*pos >= TOTAL){
+  if (*pos >= TOTAL) {
+    return MAX_CONTATOS;
   }
   printf("Digite o nome do contato: ");
   fgets(contatos[*pos].nome, NOME, stdin);
-  
+
   printf("Entre com o sobrenome: ");
   fgets(contatos[*pos].sobrenome, SOBRENOME, stdin);
-  
+
   printf("Entre com o e-mail: ");
   fgets(contatos[*pos].email, EMAIL, stdin);
-  
-  printf("Entre com o numero: ");
+
+  printf("Entre com o número: ");
   scanf("%d", &contatos[*pos].numero);
-  
+
   *pos = *pos + 1;
-  printf("Contato adicionado com sucesso! <3\n");
+  printf("\nContato adicionado com sucesso! <3\n");
   return OK;
 }
 
@@ -48,7 +49,6 @@ ERROS deletar(Contato contatos[], int *pos) {
 
   int encontrado = 0;
   for (int i = 0; i < *pos; i++) {
-    printf("ola");
     if (contatos[i].numero == num_deletar || encontrado) {
       strcpy(contatos[i].nome, contatos[i + 1].nome);
       strcpy(contatos[i].sobrenome, contatos[i + 1].sobrenome);
@@ -56,16 +56,18 @@ ERROS deletar(Contato contatos[], int *pos) {
       contatos[i].numero = contatos[i + 1].numero;
       encontrado = 1;
     }
+    else {
+      return NAO_ENCONTRADO;
+    }
   }
   if (encontrado)
     *pos = *pos - 1;
-  printf("Contato deletado com sucesso! <3\n");
+  printf("\nContato deletado com sucesso! <3\n");
   return OK;
 }
 
 ERROS exportar_binario(Contato contatos[], int pos) {
-  FILE *arquivo =
-    fopen("contatos.bin", "wb");
+  FILE *arquivo = fopen("contatos.bin", "wb");
 
   if (arquivo == NULL) {
     return ABRIR;
@@ -78,13 +80,12 @@ ERROS exportar_binario(Contato contatos[], int pos) {
   }
 
   fclose(arquivo);
-  printf("Contatos exportados para arquivo binário com sucesso! <3\n");
+  printf("\nContatos exportados para arquivo binário com sucesso! <3\n");
   return OK;
 }
 
 ERROS carregar_binario(Contato contatos[], int *pos) {
-  FILE *arquivo =
-    fopen("contatos.bin", "rb");
+  FILE *arquivo = fopen("contatos.bin", "rb");
 
   if (arquivo == NULL) {
     return ABRIR;
@@ -99,11 +100,12 @@ ERROS carregar_binario(Contato contatos[], int *pos) {
   *pos = qtd;
 
   fclose(arquivo);
-  printf("Contatos salvos de arquivo binário com sucesso! <3\n");
+  printf("\nContatos salvos de arquivo binário com sucesso! <3\n");
   return OK;
 }
 
 void clearBuffer() {
   int c;
-  while ((c = getchar()) != '\n' && c != EOF);
+  while ((c = getchar()) != '\n' && c != EOF)
+    ;
 }
