@@ -33,6 +33,8 @@ int main() {
       case 4:
       resultado = exportar_binario(contatos, pos);
       break;
+      case 5:
+      resultado = carregar_binario(contatos, &pos);
     }
   } while (opcao != 0);
 }

@@ -82,6 +82,27 @@ ERROS exportar_binario(Contato contatos[], int pos) {
   return OK;
 }
 
+ERROS carregar_binario(Contato contatos[], int *pos) {
+  FILE *arquivo =
+    fopen("contatos.bin", "rb");
+
+  if (arquivo == NULL) {
+    return ABRIR;
+  }
+
+  int qtd = fread(contatos, sizeof(Contato), TOTAL, arquivo);
+
+  if (qtd <= 0) {
+    fclose(arquivo);
+    return LER;
+  }
+  *pos = qtd;
+
+  fclose(arquivo);
+  printf("Contatos salvos de arquivo binário com sucesso! <3\n");
+  return OK;
+}
+
 void clearBuffer() {
   int c;
   while ((c = getchar()) != '\n' && c != EOF);
