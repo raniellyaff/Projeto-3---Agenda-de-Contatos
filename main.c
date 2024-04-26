@@ -1,12 +1,13 @@
-#include <stdio.h>
-#include "contatos.h"
+#include <stdio.h> // inclusão de header de input e output
+#include "contatos.h" // inclusão das assinaturas de funções 
 
-int main() {
-  Contato contatos[TOTAL];
-  int pos = 0;
-  int opcao;
-  ERROS resultado;
+int main() { // função principal com chamada de funções
+  Contato contatos[TOTAL]; // struct definido
+  int pos = 0; 
+  int opcao; 
+  ERROS resultado; 
 
+  // faça essas operações até que o input recebido seja diferente de 0
   do {
     printf("\nMenu principal! <3\n");
     printf("1 - Adicionar contato\n");
@@ -17,9 +18,10 @@ int main() {
     printf("0 - Sair\n");
     printf("Escolha uma opção: ");
 
-
+  // lê o que foi digitado pelo usuário
     scanf("%d", &opcao);
     clearBuffer();
+  // entra nos cases com base no que foi digitado e armazena o retorno da função na variável resultado
     switch (opcao) {
       case 1:
         resultado = criar(contatos, &pos);
@@ -45,6 +47,7 @@ int main() {
         resultado = OK;
         break;
     }
+  // entra nos cases com base no retorno das funções, para printar caso os erros sejam encontrados
     switch (resultado) {
       case OK:
         break;
