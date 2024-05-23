@@ -13,7 +13,7 @@ typedef struct Contato {
 } Contato;
 
 // enumera possíveis erros
-typedef enum {OK, MAX_CONTATOS, SEM_CONTATOS, NAO_ENCONTRADO, ESCREVER, ABRIR, LER} ERROS;
+typedef enum {OK, MAX_CONTATOS, SEM_CONTATOS, NAO_ENCONTRADO, ESCREVER, ABRIR, LER, EMAIL_INVALIDO} ERROS;
 
 typedef ERROS (*funcao)(Contato[], int*);
 
@@ -23,4 +23,5 @@ ERROS listar(Contato contatos[], int *pos);
 ERROS deletar(Contato contatos[], int *pos);
 ERROS exportar_binario(Contato contatos[], int pos);
 ERROS carregar_binario(Contato contatos[], int *pos);
+ERROS validarEmail(const char *email);
 void clearBuffer();

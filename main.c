@@ -69,6 +69,9 @@ int main() { // função principal com chamada de funções
       case LER:
         printf("Não foi possível ler o arquivo! <3");
         break;
+      case EMAIL_INVALIDO:
+        printf("\nE-mail inválido! <3\n");
+        break;
       default:
         printf("Erro desconhecido! <3");
         break;
