@@ -3,6 +3,21 @@
 #include <stdio.h>
 #include <string.h>
 
+// Função para validar o email
+ERROS validarEmail(const char *email) {
+    const char *at = strchr(email, '@');  // Procura o caractere '@' no email
+    if (at == NULL) {                     // Se não encontrar '@', o email é inválido
+        return 0;  // Retorna EMAIL_INVALIDO para email inválido
+    }
+
+    const char *dot = strrchr(at, '.');   // Procura o último '.' após o '@'
+    if (dot == NULL || dot <= at + 1 || *(dot + 1) == '\0') {  // Verifica se '.' está em uma posição válida
+        return 0;  // Retorna EMAIL_INVALIDO se '.' não estiver depois de '@' ou for o último caractere
+    }
+
+    return 1;  // Retorna OK para email válido
+}
+
 // função criar contato
 ERROS criar(Contato contatos[], int *pos) { 
 
@@ -19,6 +34,14 @@ ERROS criar(Contato contatos[], int *pos) {
   printf("Entre com o e-mail: ");
   fgets(contatos[*pos].email, EMAIL, stdin);
 
+  // Remover o '\n' no final da string email
+  contatos[*pos].email[strcspn(contatos[*pos].email, "\n")] = '\0';
+
+  // Validar o email
+  if (!validarEmail(contatos[*pos].email)) {
+      return EMAIL_INVALIDO;
+  }
+  
   printf("Entre com o número: ");
   scanf("%d", &contatos[*pos].numero);
 
@@ -37,7 +60,7 @@ ERROS listar(Contato contatos[], int *pos) {
   for (int i = 0; i < *pos; i++) { // loop que irá percorrer os structs e printar um por um
     printf("\nNome: %s", contatos[i].nome);
     printf("Sobrenome: %s", contatos[i].sobrenome);
-    printf("E-mail: %s", contatos[i].email);
+    printf("E-mail: %s\n", contatos[i].email);
     printf("Número: %d\n", contatos[i].numero);
   }
 
