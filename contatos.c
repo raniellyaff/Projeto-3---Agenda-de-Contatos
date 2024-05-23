@@ -18,6 +18,16 @@ ERROS validarEmail(const char *email) {
     return 1;  // Retorna OK para email válido
 }
 
+// Função para verificar se o número já está em uso
+ERROS numeroExiste(Contato contatos[], int pos, int numero) {
+    for (int i = 0; i < pos; i++) {
+         if (contatos[i].numero == numero) {
+            return NUMERO_EXISTE; // Número já existe
+        }
+    }
+    return OK; // Número não existe
+}
+
 // função criar contato
 ERROS criar(Contato contatos[], int *pos) { 
 
@@ -45,6 +55,11 @@ ERROS criar(Contato contatos[], int *pos) {
   printf("Entre com o número: ");
   scanf("%d", &contatos[*pos].numero);
 
+  ERROS numeroStatus = numeroExiste(contatos, *pos, contatos[*pos].numero);
+  if (numeroStatus == NUMERO_EXISTE) {
+      return NUMERO_EXISTE;
+  }
+  
 
   *pos = *pos + 1; //posição passa a ser posição atual + 1
   printf("\nContato adicionado com sucesso! <3\n"); //retorna mensagem de sucesso e OK pois não encontrou erros
