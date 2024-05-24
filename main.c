@@ -72,6 +72,9 @@ int main() { // função principal com chamada de funções
       case EMAIL_INVALIDO:
         printf("\nE-mail inválido! <3\n");
         break;
+      case NUMERO_EXISTE:
+        printf("\nNúmero já existe! Tente novamente <3\n");
+        break;
       default:
         printf("Erro desconhecido! <3");
         break;
