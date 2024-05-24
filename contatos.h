@@ -13,15 +13,27 @@ typedef struct Contato {
 } Contato;
 
 // enumera possíveis erros
-typedef enum {OK, MAX_CONTATOS, SEM_CONTATOS, NAO_ENCONTRADO, ESCREVER, ABRIR, LER, EMAIL_INVALIDO} ERROS;
+typedef enum {OK, MAX_CONTATOS, SEM_CONTATOS, NAO_ENCONTRADO, ESCREVER, ABRIR, LER, EMAIL_INVALIDO, NUMERO_EXISTE} ERROS;
 
 typedef ERROS (*funcao)(Contato[], int*);
 
 // assinatura das funções e seus parâmetros feitas em contatos.c
-ERROS criar(Contato contatos[], int *pos);
-ERROS listar(Contato contatos[], int *pos);
-ERROS deletar(Contato contatos[], int *pos);
-ERROS exportar_binario(Contato contatos[], int pos);
-ERROS carregar_binario(Contato contatos[], int *pos);
-ERROS validarEmail(const char *email);
+ERROS criarpessoal(Contato pessoal[], int *pos);
+ERROS criartrabalho(Contato trabalho[], int *pos);
+ERROS listarpessoal(Contato pessoal[], int *pos);
+ERROS listartrabalho(Contato trabalho[], int *pos);
+
+ERROS editarpessoal(Contato pessoal[], int *pos);
+ERROS editartrabalho(Contato trabalho[], int *pos);
+
+ERROS deletarpessoal(Contato pessoal[], int *pos);
+ERROS deletartrabalho(Contato trabalho[], int *pos);
+ERROS exportar_binariopessoal(Contato pessoal[], int pos);
+ERROS exportar_binariotrabalho(Contato trabalho[], int pos);
+ERROS carregar_binariopessoal(Contato pessoal[], int *pos);
+ERROS carregar_binariotrabalho(Contato trabalho[], int *pos);
+ERROS validarEmailpessoal(const char *email);
+ERROS validarEmailtrabalho(const char *email);
+ERROS numeroExistepessoal(Contato pessoal[], int pos, int numero);
+ERROS numeroExistetrabalho(Contato trabalho[], int pos, int numero);
 void clearBuffer();
