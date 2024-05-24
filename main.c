@@ -2,7 +2,8 @@
 #include "contatos.h" // inclusão das assinaturas de funções 
 
 int main() { // função principal com chamada de funções
-  Contato contatos[TOTAL]; // struct definido
+  Contato pessoal[TOTAL]; // struct definido
+  Contato trabalho[TOTAL];
   int pos = 0; 
   int opcao; 
   ERROS resultado; 
@@ -10,11 +11,16 @@ int main() { // função principal com chamada de funções
   // faça essas operações até que o input recebido seja diferente de 0
   do {
     printf("\nMenu principal! <3\n");
-    printf("1 - Adicionar contato\n");
-    printf("2 - Listar contatos\n");
-    printf("3 - Deletar contato\n");
-    printf("4 - Exportar contatos para binário\n");
-    printf("5 - Carregar contatos de binário\n");
+    printf("1 - Adicionar contato pessoal\n");
+    printf("2 - Adicionar contato de trabalho\n");
+    printf("3 - Listar contatos pessoais\n");
+    printf("4 - Listar contatos de trabalho\n");
+    printf("5 - Deletar contato pessoal\n");
+    printf("6 - Deletar contato de trabalho\n");
+    printf("7 - Exportar contatos pessoais para binário\n");
+    printf("8 - Exportar contatos de trabalho para binário\n");
+    printf("9 - Carregar contatos pessoais de binário\n");
+    printf("10 - Carregar contatos de trabalho de binário\n");
     printf("0 - Sair\n");
     printf("Escolha uma opção: ");
 
@@ -24,19 +30,34 @@ int main() { // função principal com chamada de funções
   // entra nos cases com base no que foi digitado e armazena o retorno da função na variável resultado
     switch (opcao) {
       case 1:
-        resultado = criar(contatos, &pos);
+        resultado = criarpessoal(pessoal, &pos);
         break;
       case 2:
-        resultado = listar(contatos, &pos);
+        resultado = criartrabalho(trabalho, &pos);
         break;
       case 3:
-        resultado = deletar(contatos, &pos);
+        resultado = listarpessoal(pessoal, &pos);
         break;
       case 4:
-        resultado = exportar_binario(contatos, pos);
+        resultado = listartrabalho(trabalho, &pos);
         break;
       case 5:
-        resultado = carregar_binario(contatos, &pos);
+        resultado = deletarpessoal(pessoal, &pos);
+        break;
+      case 6:
+        resultado = deletartrabalho(trabalho, &pos);
+        break;
+      case 7:
+        resultado = exportar_binariopessoal(pessoal, pos);
+        break;
+      case 8:
+        resultado = exportar_binariotrabalho(trabalho, pos);
+        break;
+      case 9:
+        resultado = carregar_binariopessoal(pessoal, &pos);
+        break;
+      case 10:
+        resultado = carregar_binariotrabalho(trabalho, &pos);
         break;
       case 0:
         printf("Saindo, tchaaauuu! <3...\n");
@@ -71,6 +92,9 @@ int main() { // função principal com chamada de funções
         break;
       case EMAIL_INVALIDO:
         printf("\nE-mail inválido! <3\n");
+        break;
+      case NUMERO_EXISTE:
+        printf("\nNúmero já existe! Tente novamente <3\n");
         break;
       default:
         printf("Erro desconhecido! <3");
