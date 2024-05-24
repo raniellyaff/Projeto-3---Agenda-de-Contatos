@@ -22,6 +22,10 @@ ERROS criarpessoal(Contato pessoal[], int *pos);
 ERROS criartrabalho(Contato trabalho[], int *pos);
 ERROS listarpessoal(Contato pessoal[], int *pos);
 ERROS listartrabalho(Contato trabalho[], int *pos);
+
+ERROS editarpessoal(Contato pessoal[], int *pos);
+ERROS editartrabalho(Contato trabalho[], int *pos);
+
 ERROS deletarpessoal(Contato pessoal[], int *pos);
 ERROS deletartrabalho(Contato trabalho[], int *pos);
 ERROS exportar_binariopessoal(Contato pessoal[], int pos);

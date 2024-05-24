@@ -11,16 +11,22 @@ int main() { // função principal com chamada de funções
   // faça essas operações até que o input recebido seja diferente de 0
   do {
     printf("\nMenu principal! <3\n");
+    printf("");
+    printf("\n CONTATOS PESSOAIS ! <3\n");
     printf("1 - Adicionar contato pessoal\n");
-    printf("2 - Adicionar contato de trabalho\n");
-    printf("3 - Listar contatos pessoais\n");
-    printf("4 - Listar contatos de trabalho\n");
-    printf("5 - Deletar contato pessoal\n");
-    printf("6 - Deletar contato de trabalho\n");
-    printf("7 - Exportar contatos pessoais para binário\n");
-    printf("8 - Exportar contatos de trabalho para binário\n");
-    printf("9 - Carregar contatos pessoais de binário\n");
-    printf("10 - Carregar contatos de trabalho de binário\n");
+    printf("2 - Listar contatos pessoais\n");
+    printf("3 - Editar contatos pessoais\n");
+    printf("4 - Deletar contato pessoal\n");
+    printf("5 - Exportar contatos pessoais para binário\n");
+    printf("6 - Carregar contatos pessoais de binário\n");
+    printf("");
+    printf("\n CONTATOS DE TRABALHO ! <3\n");
+    printf("7 - Adicionar contato de trabalho\n");
+    printf("8 - Listar contatos de trabalho\n");
+    printf("9 - Editar contato de trabalho\n");
+    printf("10 - Deletar contato de trabalho\n");
+    printf("1 - Exportar contatos de trabalho para binário\n");
+    printf("12 - Carregar contatos de trabalho de binário\n");
     printf("0 - Sair\n");
     printf("Escolha uma opção: ");
 
@@ -33,30 +39,36 @@ int main() { // função principal com chamada de funções
         resultado = criarpessoal(pessoal, &pos);
         break;
       case 2:
-        resultado = criartrabalho(trabalho, &pos);
-        break;
-      case 3:
         resultado = listarpessoal(pessoal, &pos);
         break;
-      case 4:
-        resultado = listartrabalho(trabalho, &pos);
+      case 3:
+        resultado = editarpessoal(pessoal, &pos);
         break;
-      case 5:
+      case 4:
         resultado = deletarpessoal(pessoal, &pos);
         break;
-      case 6:
-        resultado = deletartrabalho(trabalho, &pos);
-        break;
-      case 7:
+      case 5:
         resultado = exportar_binariopessoal(pessoal, pos);
         break;
-      case 8:
-        resultado = exportar_binariotrabalho(trabalho, pos);
-        break;
-      case 9:
+      case 6:
         resultado = carregar_binariopessoal(pessoal, &pos);
         break;
+      case 7:
+        resultado = criartrabalho(trabalho, &pos);
+        break;
+      case 8:
+        resultado = listartrabalho(trabalho, &pos);
+        break;
+      case 9:
+        resultado = editartrabalho(trabalho, &pos);
+        break;
       case 10:
+        resultado = deletartrabalho(trabalho, &pos);
+        break;
+      case 11:
+        resultado = exportar_binariotrabalho(trabalho, pos);
+        break;
+      case 12:
         resultado = carregar_binariotrabalho(trabalho, &pos);
         break;
       case 0:

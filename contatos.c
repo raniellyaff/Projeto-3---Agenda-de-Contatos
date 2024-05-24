@@ -158,6 +158,112 @@ ERROS listartrabalho(Contato trabalho[], int *pos) {
   return OK;
 }
 
+ERROS editarpessoal(Contato pessoal[], int *pos) {
+  if (*pos == 0) // caso o valor do ponteiro da posição for 0, não houve criação de contatos, logo, não há contatos a serem exibidos, então retorna erro SEM_CONTATOS
+    return SEM_CONTATOS;
+
+  int num_editar; // define a variável que irá armazenar o número a ser deletado
+  printf("Digite o número do contato a ser editado: "); // pede variável e armazena no endereço dessa variável anterior
+  scanf("%d", &num_editar);
+
+  int encontrado = 0; // define uma variável que irá verificar se o número foi encontrado na memória, encontrado = false
+
+  for (int i = 0; i < *pos; i++) { // loop que percorre os structs criados
+    if (pessoal[i].numero == num_editar) { // caso o contato do struct i seja igual ao número a ser deletado, ou o número já foi encontrado
+      clearBuffer();
+      printf("Digite o nome do contato: ");
+      fgets(pessoal[i].nome, NOME, stdin);
+      printf("Entre com o sobrenome: ");
+      fgets(pessoal[*pos].sobrenome, SOBRENOME, stdin);
+
+      strcpy(pessoal[i].sobrenome, pessoal[*pos].sobrenome);
+
+      printf("Entre com o e-mail: ");
+      fgets(pessoal[*pos].email, EMAIL, stdin);
+
+      // Remover o '\n' no final da string email
+      pessoal[*pos].email[strcspn(pessoal[*pos].email, "\n")] = '\0';
+
+      // Validar o email
+      if (!validarEmailpessoal(pessoal[*pos].email)) {
+        return EMAIL_INVALIDO;
+      }
+
+      strcpy(pessoal[i].email, pessoal[*pos].email);
+      
+      printf("Entre com o número: ");
+      scanf("%d", &pessoal[*pos].numero);
+
+      ERROS numeroStatus = numeroExistepessoal(pessoal, *pos, pessoal[*pos].numero);
+      if (numeroStatus == NUMERO_EXISTE) {
+        return NUMERO_EXISTE;
+      }
+      encontrado = 1; // número foi encontrado = true, logo, entra no loop e termina de copiar as próximas posições
+      pessoal[i].numero = pessoal[*pos].numero;
+
+    }
+    else { // caso não entre no if anterior, o número não foi encontrado, logo, retorna o erro de que o número não foi registrado
+      return NAO_ENCONTRADO;
+    }
+    
+  }
+  printf("\nContato editado com sucesso! <3\n"); // //retorna mensagem de sucesso e OK pois não encontrou erros
+  return OK;
+}
+
+ERROS editartrabalho(Contato trabalho[], int *pos) {
+  if (*pos == 0) // caso o valor do ponteiro da posição for 0, não houve criação de contatos, logo, não há contatos a serem exibidos, então retorna erro SEM_CONTATOS
+    return SEM_CONTATOS;
+
+  int num_editar; // define a variável que irá armazenar o número a ser deletado
+  printf("Digite o número do contato a ser editado: "); // pede variável e armazena no endereço dessa variável anterior
+  scanf("%d", &num_editar);
+
+  int encontrado = 0; // define uma variável que irá verificar se o número foi encontrado na memória, encontrado = false
+
+  for (int i = 0; i < *pos; i++) { // loop que percorre os structs criados
+    if (trabalho[i].numero == num_editar) { // caso o contato do struct i seja igual ao número a ser deletado, ou o número já foi encontrado
+      clearBuffer();
+      printf("Digite o nome do contato: ");
+      fgets(trabalho[i].nome, NOME, stdin);
+      printf("Entre com o sobrenome: ");
+      fgets(trabalho[*pos].sobrenome, SOBRENOME, stdin);
+
+      strcpy(trabalho[i].sobrenome, trabalho[*pos].sobrenome);
+
+      printf("Entre com o e-mail: ");
+      fgets(trabalho[*pos].email, EMAIL, stdin);
+
+      // Remover o '\n' no final da string email
+      trabalho[*pos].email[strcspn(trabalho[*pos].email, "\n")] = '\0';
+
+      // Validar o email
+      if (!validarEmailpessoal(trabalho[*pos].email)) {
+        return EMAIL_INVALIDO;
+      }
+
+      strcpy(trabalho[i].email, trabalho[*pos].email);
+
+      printf("Entre com o número: ");
+      scanf("%d", &trabalho[*pos].numero);
+
+      ERROS numeroStatus = numeroExistepessoal(trabalho, *pos, trabalho[*pos].numero);
+      if (numeroStatus == NUMERO_EXISTE) {
+        return NUMERO_EXISTE;
+      }
+      encontrado = 1; // número foi encontrado = true, logo, entra no loop e termina de copiar as próximas posições
+      trabalho[i].numero = trabalho[*pos].numero;
+
+    }
+    else { // caso não entre no if anterior, o número não foi encontrado, logo, retorna o erro de que o número não foi registrado
+      return NAO_ENCONTRADO;
+    }
+
+  }
+  printf("\nContato editado com sucesso! <3\n"); // //retorna mensagem de sucesso e OK pois não encontrou erros
+  return OK;
+}
+
 // função deletar
 ERROS deletarpessoal(Contato pessoal[], int *pos) {
   if (*pos == 0) // caso o valor do ponteiro da posição for 0, não houve criação de contatos, logo, não há contatos a serem exibidos, então retorna erro SEM_CONTATOS
